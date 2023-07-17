@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SporSalonuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Antreman">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hareket" Type="nvarchar(max)" />
+          <Property Name="SeviyeID" Type="int" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FirmaBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmaAdi" Type="nvarchar" MaxLength="200" />
+          <Property Name="Sehir" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adres" Type="nvarchar(max)" />
+          <Property Name="SirketNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" />
+          <Property Name="WebSitesi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="KullaniciAntreman">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="UyelerID" Type="int" />
+          <Property Name="AntremanID" Type="int" />
+          <Property Name="Set" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tekrar" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="SilindiMi" Type="bit" />
+        </EntityType>
+        <EntityType Name="Olculer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="UyelerID" Type="int" />
+          <Property Name="Boy" Type="int" />
+          <Property Name="Kilo" Type="int" />
+          <Property Name="Omuz" Type="int" />
+          <Property Name="Gogus" Type="int" />
+          <Property Name="Kol" Type="int" />
+          <Property Name="Bel" Type="int" />
+          <Property Name="Kalca" Type="int" />
+          <Property Name="Bacak" Type="int" />
+          <Property Name="SilindiMi" Type="bit" />
+        </EntityType>
+        <EntityType Name="Seviye">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AntremanSeviyesi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirimFiyati" Type="money" />
+          <Property Name="SatisFiyati" Type="money" />
+          <Property Name="StokAdeti" Type="int" />
+        </EntityType>
+        <EntityType Name="UrunVeHizmetler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="UrunlerID" Type="int" />
+          <Property Name="Miktari" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fiyati" Type="money" />
+          <Property Name="UyeID" Type="int" />
+          <Property Name="Tip" Type="nchar" MaxLength="10" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+          <Property Name="SilindiMi" Type="bit" />
+          <Property Name="KimGirisYapti" Type="int" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="10" />
+          <Property Name="DogumTarihi" Type="date" />
+          <Property Name="Cinsiyet" Type="nchar" MaxLength="10" />
+          <Property Name="KanGrubu" Type="nchar" MaxLength="10" />
+          <Property Name="BaslangicTarihi" Type="datetime" />
+          <Property Name="BitisTarihi" Type="datetime" />
+          <Property Name="P.Coaching" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mail" Type="nvarchar(max)" />
+          <Property Name="NOT" Type="nvarchar(max)" />
+          <Property Name="AktifMi" Type="bit" />
+          <Property Name="KimGirisYapti" Type="int" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminMi" Type="bit" />
+        </EntityType>
+        <EntityType Name="YoneticiGirisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Antreman_Seviye">
+          <End Role="Seviye" Type="Self.Seviye" Multiplicity="0..1" />
+          <End Role="Antreman" Type="Self.Antreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seviye">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Antreman">
+              <PropertyRef Name="SeviyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciAntreman_Antreman">
+          <End Role="Antreman" Type="Self.Antreman" Multiplicity="0..1" />
+          <End Role="KullaniciAntreman" Type="Self.KullaniciAntreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Antreman">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KullaniciAntreman">
+              <PropertyRef Name="AntremanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciAntreman_Uyeler">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="KullaniciAntreman" Type="Self.KullaniciAntreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KullaniciAntreman">
+              <PropertyRef Name="UyelerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Olculer_Uyeler1">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="Olculer" Type="Self.Olculer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Olculer">
+              <PropertyRef Name="UyelerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunVeHizmetler_Urunler">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+          <End Role="UrunVeHizmetler" Type="Self.UrunVeHizmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrunVeHizmetler">
+              <PropertyRef Name="UrunlerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Yonetici">
+          <End Role="Yonetici" Type="Self.Yonetici" Multiplicity="0..1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yonetici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="KimGirisYapti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SporSalonuModelStoreContainer">
+          <EntitySet Name="Antreman" EntityType="Self.Antreman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaBilgileri" EntityType="Self.FirmaBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciAntreman" EntityType="Self.KullaniciAntreman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Olculer" EntityType="Self.Olculer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seviye" EntityType="Self.Seviye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UrunVeHizmetler" EntityType="Self.UrunVeHizmetler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YoneticiGirisi" EntityType="Self.YoneticiGirisi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Antreman_Seviye" Association="Self.FK_Antreman_Seviye">
+            <End Role="Seviye" EntitySet="Seviye" />
+            <End Role="Antreman" EntitySet="Antreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciAntreman_Antreman" Association="Self.FK_KullaniciAntreman_Antreman">
+            <End Role="Antreman" EntitySet="Antreman" />
+            <End Role="KullaniciAntreman" EntitySet="KullaniciAntreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciAntreman_Uyeler" Association="Self.FK_KullaniciAntreman_Uyeler">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="KullaniciAntreman" EntitySet="KullaniciAntreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Olculer_Uyeler1" Association="Self.FK_Olculer_Uyeler1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Olculer" EntitySet="Olculer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunVeHizmetler_Urunler" Association="Self.FK_UrunVeHizmetler_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunVeHizmetler" EntitySet="UrunVeHizmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Yonetici" Association="Self.FK_Uyeler_Yonetici">
+            <End Role="Yonetici" EntitySet="Yonetici" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SporSalonuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Antreman">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hareket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeviyeID" Type="Int32" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Seviye" Relationship="Self.FK_Antreman_Seviye" FromRole="Antreman" ToRole="Seviye" />
+          <NavigationProperty Name="KullaniciAntreman" Relationship="Self.FK_KullaniciAntreman_Antreman" FromRole="Antreman" ToRole="KullaniciAntreman" />
+        </EntityType>
+        <EntityType Name="FirmaBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SirketNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="WebSitesi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KullaniciAntreman">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyelerID" Type="Int32" />
+          <Property Name="AntremanID" Type="Int32" />
+          <Property Name="Set" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tekrar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Antreman" Relationship="Self.FK_KullaniciAntreman_Antreman" FromRole="KullaniciAntreman" ToRole="Antreman" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_KullaniciAntreman_Uyeler" FromRole="KullaniciAntreman" ToRole="Uyeler" />
+          <Property Name="SilindiMi" Type="Boolean" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Olculer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyelerID" Type="Int32" />
+          <Property Name="Boy" Type="Int32" />
+          <Property Name="Kilo" Type="Int32" />
+          <Property Name="Omuz" Type="Int32" />
+          <Property Name="Kol" Type="Int32" />
+          <Property Name="Bel" Type="Int32" />
+          <Property Name="Kalca" Type="Int32" />
+          <Property Name="Bacak" Type="Int32" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_Olculer_Uyeler1" FromRole="Olculer" ToRole="Uyeler" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Gogus" Type="Int32" />
+          <Property Name="SilindiMi" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Seviye">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AntremanSeviyesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Antreman" Relationship="Self.FK_Antreman_Seviye" FromRole="Seviye" ToRole="Antreman" />
+        </EntityType>
+        <EntityType Name="UrunVeHizmetler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="Miktari" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeID" Type="Int32" />
+          <Property Name="KimGirisYapti" Type="Int32" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_UrunVeHizmetler_Uyeler" FromRole="UrunVeHizmetler" ToRole="Uyeler" />
+          <NavigationProperty Name="Yonetici" Relationship="Self.FK_UrunVeHizmetler_Yonetici" FromRole="UrunVeHizmetler" ToRole="Yonetici" />
+          <Property Name="SilindiMi" Type="Boolean" />
+          <Property Name="Fiyati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tip" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrunlerID" Type="Int32" />
+          <NavigationProperty Name="Urunler" Relationship="SporSalonuModel.FK_UrunVeHizmetler_Urunler" FromRole="UrunVeHizmetler" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KanGrubu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="BaslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="P_Coaching" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NOT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KimGirisYapti" Type="Int32" />
+          <NavigationProperty Name="KullaniciAntreman" Relationship="Self.FK_KullaniciAntreman_Uyeler" FromRole="Uyeler" ToRole="KullaniciAntreman" />
+          <NavigationProperty Name="Olculer" Relationship="Self.FK_Olculer_Uyeler1" FromRole="Uyeler" ToRole="Olculer" />
+          <NavigationProperty Name="UrunVeHizmetler" Relationship="Self.FK_UrunVeHizmetler_Uyeler" FromRole="Uyeler" ToRole="UrunVeHizmetler" />
+          <NavigationProperty Name="Yonetici" Relationship="Self.FK_Uyeler_Yonetici" FromRole="Uyeler" ToRole="Yonetici" />
+          <Property Name="AktifMi" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Yonetici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminMi" Type="Boolean" />
+          <NavigationProperty Name="UrunVeHizmetler" Relationship="Self.FK_UrunVeHizmetler_Yonetici" FromRole="Yonetici" ToRole="UrunVeHizmetler" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK_Uyeler_Yonetici" FromRole="Yonetici" ToRole="Uyeler" />
+        </EntityType>
+        <EntityType Name="YoneticiGirisi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Antreman_Seviye">
+          <End Role="Seviye" Type="Self.Seviye" Multiplicity="0..1" />
+          <End Role="Antreman" Type="Self.Antreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seviye">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Antreman">
+              <PropertyRef Name="SeviyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciAntreman_Antreman">
+          <End Role="Antreman" Type="Self.Antreman" Multiplicity="0..1" />
+          <End Role="KullaniciAntreman" Type="Self.KullaniciAntreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Antreman">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KullaniciAntreman">
+              <PropertyRef Name="AntremanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KullaniciAntreman_Uyeler">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="KullaniciAntreman" Type="Self.KullaniciAntreman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KullaniciAntreman">
+              <PropertyRef Name="UyelerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Olculer_Uyeler1">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="Olculer" Type="Self.Olculer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Olculer">
+              <PropertyRef Name="UyelerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunVeHizmetler_Uyeler">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="0..1" />
+          <End Role="UrunVeHizmetler" Type="Self.UrunVeHizmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrunVeHizmetler">
+              <PropertyRef Name="UyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrunVeHizmetler_Yonetici">
+          <End Role="Yonetici" Type="Self.Yonetici" Multiplicity="0..1" />
+          <End Role="UrunVeHizmetler" Type="Self.UrunVeHizmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yonetici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrunVeHizmetler">
+              <PropertyRef Name="KimGirisYapti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Uyeler_Yonetici">
+          <End Role="Yonetici" Type="Self.Yonetici" Multiplicity="0..1" />
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yonetici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Uyeler">
+              <PropertyRef Name="KimGirisYapti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SporSalonuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Antreman" EntityType="Self.Antreman" />
+          <EntitySet Name="FirmaBilgileri" EntityType="Self.FirmaBilgileri" />
+          <EntitySet Name="KullaniciAntreman" EntityType="Self.KullaniciAntreman" />
+          <EntitySet Name="Olculer" EntityType="Self.Olculer" />
+          <EntitySet Name="Seviye" EntityType="Self.Seviye" />
+          <EntitySet Name="UrunVeHizmetler" EntityType="Self.UrunVeHizmetler" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" />
+          <EntitySet Name="Yonetici" EntityType="Self.Yonetici" />
+          <EntitySet Name="YoneticiGirisi" EntityType="Self.YoneticiGirisi" />
+          <AssociationSet Name="FK_Antreman_Seviye" Association="Self.FK_Antreman_Seviye">
+            <End Role="Seviye" EntitySet="Seviye" />
+            <End Role="Antreman" EntitySet="Antreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciAntreman_Antreman" Association="Self.FK_KullaniciAntreman_Antreman">
+            <End Role="Antreman" EntitySet="Antreman" />
+            <End Role="KullaniciAntreman" EntitySet="KullaniciAntreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KullaniciAntreman_Uyeler" Association="Self.FK_KullaniciAntreman_Uyeler">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="KullaniciAntreman" EntitySet="KullaniciAntreman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Olculer_Uyeler1" Association="Self.FK_Olculer_Uyeler1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Olculer" EntitySet="Olculer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunVeHizmetler_Uyeler" Association="Self.FK_UrunVeHizmetler_Uyeler">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="UrunVeHizmetler" EntitySet="UrunVeHizmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrunVeHizmetler_Yonetici" Association="Self.FK_UrunVeHizmetler_Yonetici">
+            <End Role="Yonetici" EntitySet="Yonetici" />
+            <End Role="UrunVeHizmetler" EntitySet="UrunVeHizmetler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Uyeler_Yonetici" Association="Self.FK_Uyeler_Yonetici">
+            <End Role="Yonetici" EntitySet="Yonetici" />
+            <End Role="Uyeler" EntitySet="Uyeler" />
+          </AssociationSet>
+          <EntitySet Name="Urunler" EntityType="SporSalonuModel.Urunler" />
+          <AssociationSet Name="FK_UrunVeHizmetler_Urunler" Association="SporSalonuModel.FK_UrunVeHizmetler_Urunler">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="UrunVeHizmetler" EntitySet="UrunVeHizmetler" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirimFiyati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SatisFiyati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StokAdeti" Type="Int32" />
+          <NavigationProperty Name="UrunVeHizmetler" Relationship="SporSalonuModel.FK_UrunVeHizmetler_Urunler" FromRole="Urunler" ToRole="UrunVeHizmetler" />
+        </EntityType>
+        <Association Name="FK_UrunVeHizmetler_Urunler">
+          <End Type="SporSalonuModel.Urunler" Role="Urunler" Multiplicity="0..1" />
+          <End Type="SporSalonuModel.UrunVeHizmetler" Role="UrunVeHizmetler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UrunVeHizmetler">
+              <PropertyRef Name="UrunlerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SporSalonuModelStoreContainer" CdmEntityContainer="SporSalonuEntities">
+          <EntitySetMapping Name="Antreman">
+            <EntityTypeMapping TypeName="SporSalonuModel.Antreman">
+              <MappingFragment StoreEntitySet="Antreman">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Hareket" ColumnName="Hareket" />
+                <ScalarProperty Name="SeviyeID" ColumnName="SeviyeID" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaBilgileri">
+            <EntityTypeMapping TypeName="SporSalonuModel.FirmaBilgileri">
+              <MappingFragment StoreEntitySet="FirmaBilgileri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+                <ScalarProperty Name="Sehir" ColumnName="Sehir" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="SirketNo" ColumnName="SirketNo" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSitesi" ColumnName="WebSitesi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciAntreman">
+            <EntityTypeMapping TypeName="SporSalonuModel.KullaniciAntreman">
+              <MappingFragment StoreEntitySet="KullaniciAntreman">
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="SilindiMi" ColumnName="SilindiMi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UyelerID" ColumnName="UyelerID" />
+                <ScalarProperty Name="AntremanID" ColumnName="AntremanID" />
+                <ScalarProperty Name="Set" ColumnName="Set" />
+                <ScalarProperty Name="Tekrar" ColumnName="Tekrar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Olculer">
+            <EntityTypeMapping TypeName="SporSalonuModel.Olculer">
+              <MappingFragment StoreEntitySet="Olculer">
+                <ScalarProperty Name="SilindiMi" ColumnName="SilindiMi" />
+                <ScalarProperty Name="Gogus" ColumnName="Gogus" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UyelerID" ColumnName="UyelerID" />
+                <ScalarProperty Name="Boy" ColumnName="Boy" />
+                <ScalarProperty Name="Kilo" ColumnName="Kilo" />
+                <ScalarProperty Name="Omuz" ColumnName="Omuz" />
+                <ScalarProperty Name="Kol" ColumnName="Kol" />
+                <ScalarProperty Name="Bel" ColumnName="Bel" />
+                <ScalarProperty Name="Kalca" ColumnName="Kalca" />
+                <ScalarProperty Name="Bacak" ColumnName="Bacak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seviye">
+            <EntityTypeMapping TypeName="SporSalonuModel.Seviye">
+              <MappingFragment StoreEntitySet="Seviye">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AntremanSeviyesi" ColumnName="AntremanSeviyesi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UrunVeHizmetler">
+            <EntityTypeMapping TypeName="SporSalonuModel.UrunVeHizmetler">
+              <MappingFragment StoreEntitySet="UrunVeHizmetler">
+                <ScalarProperty Name="UrunlerID" ColumnName="UrunlerID" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Fiyati" ColumnName="Fiyati" />
+                <ScalarProperty Name="SilindiMi" ColumnName="SilindiMi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Miktari" ColumnName="Miktari" />
+                <ScalarProperty Name="UyeID" ColumnName="UyeID" />
+                <ScalarProperty Name="KimGirisYapti" ColumnName="KimGirisYapti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyeler">
+            <EntityTypeMapping TypeName="SporSalonuModel.Uyeler">
+              <MappingFragment StoreEntitySet="Uyeler">
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="KanGrubu" ColumnName="KanGrubu" />
+                <ScalarProperty Name="BaslangicTarihi" ColumnName="BaslangicTarihi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="P_Coaching" ColumnName="P.Coaching" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="NOT" ColumnName="NOT" />
+                <ScalarProperty Name="KimGirisYapti" ColumnName="KimGirisYapti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yonetici">
+            <EntityTypeMapping TypeName="SporSalonuModel.Yonetici">
+              <MappingFragment StoreEntitySet="Yonetici">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="AdminMi" ColumnName="AdminMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YoneticiGirisi">
+            <EntityTypeMapping TypeName="SporSalonuModel.YoneticiGirisi">
+              <MappingFragment StoreEntitySet="YoneticiGirisi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="SporSalonuModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="StokAdeti" ColumnName="StokAdeti" />
+                <ScalarProperty Name="SatisFiyati" ColumnName="SatisFiyati" />
+                <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
